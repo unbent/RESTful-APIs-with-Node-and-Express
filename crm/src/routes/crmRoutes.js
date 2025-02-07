@@ -1,51 +1,32 @@
 import { request, response } from 'express'
+import { addNewContact } from '../controllers/crmController'
 
 const routes = (app) => {
     app.route('/contact')
-        .get(
-            (request, response, next) => {
-                //middleware
-                logRequestDetails(request)
-                next()
-            },
-            (request, response, next) => {
-                response.send('GET request successful!')
-            }
-        )
+        .all((request, response, next) => {
+            logRequestDetails(request) // This will log for all HTTP methods
+            next()
+        })
 
-        .post(
-            (request, response, next) => {
-                //middleware
-                logRequestDetails(request)
-                next()
-            },
-            (request, response, next) => {
-                response.send('POST request successful!')
-            }
-        )
+        .get((request, response, next) => {
+            response.send('GET request successful!')
+        })
+
+        .post(addNewContact)
 
     app.route('/contact/:contactId')
-        .put(
-            (request, response, next) => {
-                //middleware
-                logRequestDetails(request)
-                next()
-            },
-            (request, response, next) => {
-                response.send('PUT request successful!')
-            }
-        )
+        .all((request, response, next) => {
+            logRequestDetails(request) // This will log for all HTTP methods
+            next()
+        })
 
-        .delete(
-            (request, response, next) => {
-                //middleware
-                logRequestDetails(request)
-                next()
-            },
-            (request, response, next) => {
-                response.send('DELETE request successful!')
-            }
-        )
+        .put((request, response, next) => {
+            response.send('PUT request successful!')
+        })
+
+        .delete((request, response, next) => {
+            response.send('DELETE request successful!')
+        })
 }
 
 function logRequestDetails(request) {
