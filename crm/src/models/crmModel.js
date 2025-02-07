@@ -1,6 +1,6 @@
-import mongoose from 'mongoose'
+import mongoose from 'mongoose';
 
-const Schema = mongoose.Schema
+const Schema = mongoose.Schema;
 
 export const ContactSchema = new Schema({
     firstName: {
@@ -24,4 +24,4 @@ export const ContactSchema = new Schema({
         type: Date,
         default: Date.now
     } // <--- Remove Hanging commas otherwise this will break the schema
-})
+});
