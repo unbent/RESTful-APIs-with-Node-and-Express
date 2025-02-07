@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "start": "nodemon ./index.js --exec babel-node",
-    "lint": "npx eslint . --fix --quiet"
+    "lint": "npx eslint . --fix --quiet",
+    "format": "prettier --write 'src/**/*.{js,jsx,ts,tsx,css,html,json}'"
   },
   "author": "",
   "license": "ISC",
@@ -23,6 +24,8 @@
     "@eslint/js": "^9.19.0",
     "eslint": "^9.19.0",
     "eslint-plugin-react": "^7.37.4",
-    "globals": "^15.14.0"
+    "globals": "^15.14.0",
+    "prettier": "^3.4.2",
+    "prettier-config-standard": "^7.0.0"
   }
 }
