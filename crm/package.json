@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "nodemon ./index.js --exec babel-node",
-    "lint": "npx eslint --fix"
+    "lint": "npx eslint . --fix --quiet"
   },
   "author": "",
   "license": "ISC",
