@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon ./index.js --exec babel-node"
+    "start": "nodemon ./index.js --exec babel-node",
+    "lint": "npx eslint --fix"
   },
   "author": "",
   "license": "ISC",
@@ -18,6 +19,10 @@
     "@babel/cli": "^7.26.4",
     "@babel/core": "^7.26.7",
     "@babel/node": "^7.26.0",
-    "@babel/preset-env": "^7.26.7"
+    "@babel/preset-env": "^7.26.7",
+    "@eslint/js": "^9.19.0",
+    "eslint": "^9.19.0",
+    "eslint-plugin-react": "^7.37.4",
+    "globals": "^15.14.0"
   }
 }
