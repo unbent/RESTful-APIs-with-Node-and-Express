@@ -1,5 +1,5 @@
 import { request, response } from 'express';
-import { addNewContact } from '../controllers/crmController';
+import { addNewContact, getContacts } from '../controllers/crmController';
 
 const routes = (app) => {
     app.route('/contact')
@@ -8,9 +8,7 @@ const routes = (app) => {
             next();
         })
 
-        .get((request, response, next) => {
-            response.send('GET request successful!');
-        })
+        .get(getContacts)
 
         .post(addNewContact);
 
@@ -20,18 +18,15 @@ const routes = (app) => {
             next();
         })
 
-        .put((request, response, next) => {
-            response.send('PUT request successful!');
-        })
+        .put((request, response, next) => {})
 
-        .delete((request, response, next) => {
-            response.send('DELETE request successful!');
-        });
+        .delete((request, response, next) => {});
 };
 
 function logRequestDetails(request) {
-    console.log(`Request from ${request.originalUrl}`);
-    console.log(`Request type ${request.method}`);
+    console.log(
+        `Started processing ${request.method} request for ${request.url}`
+    );
 }
 
 export default routes;
