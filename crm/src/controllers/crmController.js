@@ -9,6 +9,14 @@ function logRequestFinished(request) {
     );
 }
 
+function contactNotFound(contact, response) {
+    if (!contact) {
+        response.status(404).json({ message: 'Contact not found' });
+        return true;
+    }
+    return false;
+}
+
 export const addNewContact = async (request, response) => {
     try {
         const newContact = new Contact(request.body);
@@ -36,6 +44,8 @@ export const getContactWithID = async (request, response) => {
     try {
         const contact = await Contact.findById(request.params.contactId);
 
+        if (contactNotFound(contact, response)) return;
+
         logRequestFinished(request);
         response.json(contact);
     } catch (err) {
@@ -45,17 +55,26 @@ export const getContactWithID = async (request, response) => {
 
 export const updateContact = async (request, response) => {
     try {
-        console.log('Request Body:', request.body);
-
-
         const contact = await Contact.findOneAndUpdate(
-            {_id: request.params.contactId},
+            { _id: request.params.contactId },
             request.body,
-            {new: true}
+            { new: true }
         );
 
-        console.log('Contact:', contact);
+        if (contactNotFound(contact, response)) return;
 
+        logRequestFinished(request);
+        response.json(contact);
+    } catch (err) {
+        response.status(500).send(err);
+    }
+};
+
+export const deleteContact = async (request, response) => {
+    try {
+        const contact = await Contact.findByIdAndDelete(request.params.contactId);
+
+        if (contactNotFound(contact, response)) return;
 
         logRequestFinished(request);
         response.json(contact);
