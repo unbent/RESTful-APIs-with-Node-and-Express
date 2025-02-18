@@ -31,3 +31,14 @@ export const getContacts = async (request, response) => {
         response.status(500).send(err);
     }
 };
+
+export const getContactWithID = async (request, response) => {
+    try {
+        const contact = await Contact.findById(request.params.contactId);
+
+        logRequestFinished(request);
+        response.json(contact);
+    } catch (err) {
+        response.status(500).send(err);
+    }
+};

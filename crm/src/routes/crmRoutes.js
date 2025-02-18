@@ -1,5 +1,5 @@
 import { request, response } from 'express';
-import { addNewContact, getContacts } from '../controllers/crmController';
+import { addNewContact, getContacts, getContactWithID } from '../controllers/crmController';
 
 const routes = (app) => {
     app.route('/contact')
@@ -17,6 +17,7 @@ const routes = (app) => {
             logRequestDetails(request); // This will log for all HTTP methods
             next();
         })
+        .get(getContactWithID)
 
         .put((request, response, next) => {})
 
