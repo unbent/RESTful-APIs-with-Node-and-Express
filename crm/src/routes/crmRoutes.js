@@ -1,5 +1,5 @@
 import { request, response } from 'express';
-import { addNewContact, getContacts, getContactWithID } from '../controllers/crmController';
+import { addNewContact, getContacts, getContactWithID, updateContact } from '../controllers/crmController';
 
 const routes = (app) => {
     app.route('/contact')
@@ -19,7 +19,7 @@ const routes = (app) => {
         })
         .get(getContactWithID)
 
-        .put((request, response, next) => {})
+        .put(updateContact)
 
         .delete((request, response, next) => {});
 };

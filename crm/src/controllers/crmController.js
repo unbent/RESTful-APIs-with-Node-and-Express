@@ -42,3 +42,24 @@ export const getContactWithID = async (request, response) => {
         response.status(500).send(err);
     }
 };
+
+export const updateContact = async (request, response) => {
+    try {
+        console.log('Request Body:', request.body);
+
+
+        const contact = await Contact.findOneAndUpdate(
+            {_id: request.params.contactId},
+            request.body,
+            {new: true}
+        );
+
+        console.log('Contact:', contact);
+
+
+        logRequestFinished(request);
+        response.json(contact);
+    } catch (err) {
+        response.status(500).send(err);
+    }
+};
