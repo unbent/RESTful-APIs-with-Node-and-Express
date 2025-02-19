@@ -72,7 +72,9 @@ export const updateContact = async (request, response) => {
 
 export const deleteContact = async (request, response) => {
     try {
-        const contact = await Contact.findByIdAndDelete(request.params.contactId);
+        const contact = await Contact.findByIdAndDelete(
+            request.params.contactId
+        );
 
         if (contactNotFound(contact, response)) return;
 
